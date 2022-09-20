@@ -1,0 +1,15 @@
+site_name: config
+
+
+nav:
+    - index: index.md
+    - Dev: dev.md
+    - pip install: pip.md
+    - settings: settings.md
+    - Blog: blog\models.md
+
+dev_addr:
+    127.0.0.1:8200
+
+site_author:
+  Денис Павлов
