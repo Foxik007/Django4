@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'ckeditor',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -50,12 +51,10 @@ INSTALLED_APPS = [
     'blog',
     'django_cleanup.apps.CleanupConfig',
     'crispy_forms',
-    'ckeditor_uploader',
-    'ckeditor',
     'django.contrib.humanize',
     'debug_toolbar',
-
-
+    'django_extensions',
+    'taggit',
 ]
 
 SITE_ID = 1
@@ -161,15 +160,22 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
+CKEDITOR_BASEPATH = "static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
-CKEDITOR_BASEPATH = "/assets/ckeditor/ckeditor/"
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
 
 CKEDITOR_CONFIGS = {
-    'awesome_ckeditor': {
-        'toolbar': 'Basic',
-    },
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
 }
+
 
 #Debug toolbar
 INTERNAL_IPS = [
@@ -178,7 +184,7 @@ INTERNAL_IPS = [
     # ...
 ]
 
-
+#django-channels
 # ASGI_APPLICATION = "config.asgi.application"
 #
 # CHANNEL_LAYERS = {
@@ -186,6 +192,8 @@ INTERNAL_IPS = [
 #         "BACKEND": "channels.layers.InMemoryChannelLayer"
 #     }
 # }
+
+
 
 #email
 
@@ -205,3 +213,5 @@ GOOGLE_RECAPTCHA_SECRET_KEY = os.getenv('GOOGLE_RECAPTCHA_SECRET_KEY')
 #     messages.WARNING: 'alert-warning',
 #     messages.ERROR: 'alert-danger',
 # }
+
+TAGGIT_CASE_INSENSITIVE = True
